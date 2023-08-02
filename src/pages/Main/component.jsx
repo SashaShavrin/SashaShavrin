@@ -1,7 +1,9 @@
+import { useState } from "react";
+
 import { Layout } from "../../components/Layout/component";
 import { restaurants } from "../../constants/constants";
-import { Button } from "../../components/Button/component";
-import { useState } from "react";
+import { Tabs } from "../../components/Tabs/component";
+import { Restaurant } from "../../components/Restaurant/component";
 
 export const MainPage = () => {
   const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
@@ -9,17 +11,13 @@ export const MainPage = () => {
   return (
     <Layout>
       <div>
-        {restaurants.map((restaurant, index) => (
-          <Button
-            key={restaurant.id}
-            onClick={() => setActiveRestaurantIndex(index)}
-          >
-            {restaurant.name}
-          </Button>
-        ))}
+        <Tabs
+          restaurants={restaurants}
+          onTabSelect={setActiveRestaurantIndex}
+        />
       </div>
-      <div>{restaurants[activeRestaurantIndex].name}</div>
-      {/* <div><Restaurant/></div> */}
+      <h2>{restaurants[activeRestaurantIndex].name}</h2>
+      <Restaurant data={restaurants[activeRestaurantIndex]} />
     </Layout>
   );
 };
