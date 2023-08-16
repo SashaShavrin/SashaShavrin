@@ -13,7 +13,7 @@ import { Cart } from "../../components/Cart/component";
 const LOCAL_STORAGE_KEY = "activeRestaurantIndex";
 
 export const MainPage = () => {
-  const [theme, setTheme] = useState("light");
+  const [user, setUser] = useState("авторизоваться");
   const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(
     () => localStorage.getItem(LOCAL_STORAGE_KEY) || 0
   );
@@ -24,12 +24,14 @@ export const MainPage = () => {
 
   return (
     <Provider store={store}>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={user}>
         <Layout>
           <Button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            onClick={() =>
+              setUser(user === "авторизоваться" ? "Sasha" : "авторизоваться")
+            }
           >
-            SwitchTheme
+            {user}
           </Button>
           <Tabs
             restaurants={restaurants}
